@@ -11,13 +11,14 @@ recognition.addEventListener('result', onSpeak)
 function onSpeak(evento) {
     chute = evento.results[0][0].transcript
     exibeChuteNaTela(chute)
+    validaChute(chute)
 }
 
 function exibeChuteNaTela(chute) {
-    const frase = parseInt(chute) === numeroAleatorio ? 'voce acertou' : 'voce errou '
     elementoChute.innerHTML = `
     <div>Você disse</div>
     <span class="box">${chute}</span>
-    <div>${frase}</div>
     `
 }
+
+recognition.addEventListener('end', () => recognition.start())
